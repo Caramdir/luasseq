@@ -374,9 +374,9 @@ end
 	
 function sseq_register_size()
 	local currobj = sseqobject[sseqcurrentindex[1]][sseqcurrentindex[2]][sseqcurrentindex[3]]
-	currobj.wd = tex.wd[sseqboxno]
-	currobj.ht = (tex.ht[sseqboxno]+tex.dp[sseqboxno])
-	currobj.dp = tex.dp[sseqboxno]
+	currobj.wd = tex.box[sseqboxno].width
+	currobj.ht = (tex.box[sseqboxno].height+tex.box[sseqboxno].depth)
+	currobj.dp = tex.box[sseqboxno].depth
 	currobj.radius = 0.5*math.sqrt(currobj.wd*currobj.wd+currobj.ht*currobj.ht)
 end
 
