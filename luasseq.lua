@@ -76,7 +76,7 @@ end
 function parselabelrange(s,defstart)
 	local res = {}
 	local mini,maxi,found
-	for rng in string.gfind(s.."," , "([^,]+)") do
+	for rng in string.gmatch(s.."," , "([^,]+)") do
 		found,_,mini,maxi = string.find(rng,"([+-]?[0-9]+)%.%.%.([+-]?[0-9]+)")
 		if not found then
 			mini = defstart
@@ -201,10 +201,10 @@ function sseq_parse_label_list(s)
 	local chunk = 0
 	local index
 	
-	for rng in string.gfind(s.."," , "([^,]*),") do
+	for rng in string.gmatch(s.."," , "([^,]*),") do
 		res[chunk] = {}
 		index = 0
-		for label in string.gfind(rng..";", "([^;]*);") do
+		for label in string.gmatch(rng..";", "([^;]*);") do
 			res[chunk][index] = label
 			index = index+1
 		end
@@ -418,7 +418,7 @@ end
 function stringtolist(pref,name)
 	local res = {}
 	for i,p in ipairs(pref) do table.insert(res,p) end
-	for w in string.gfind(name,"%w+") do
+	for w in string.gmatch(name,"%w+") do
 		table.insert(res,w)
 	end
 	table.sort(res)
